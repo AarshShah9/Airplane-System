@@ -5,12 +5,14 @@ public class Flight {
     private int aircraftId;
     private int originId;
     private int destinationId;
-    private String departureTime; //make time object in utils
+    private String departureTime; // make time object in utils
     private String arrivalTime;
     private int price;
-    private int availableSeats; //make seats an observer strategy, update available seats whenever a seat is taken
+    private int availableSeats; // make seats an observer strategy, update available seats whenever a seat is
+                                // taken
 
-    public Flight(int flightId, int aircraftId, int originId, int destinationId, String departureTime, String arrivalTime, int price, int availableSeats) {
+    public Flight(int flightId, int aircraftId, int originId, int destinationId, String departureTime,
+            String arrivalTime, int price, int availableSeats) {
         this.flightId = flightId;
         this.aircraftId = aircraftId;
         this.originId = originId;

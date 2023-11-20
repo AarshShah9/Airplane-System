@@ -11,35 +11,23 @@ public class LoginController implements ActionListener {
     private User model;
     private LoginView view;
     private Database db;
-    private LoginView loginView;
     private MainController mainController;
 
-    public LoginController(Database db, MainController mc, String role) {
+    public LoginController(Database db, MainController mc) {
         this.mainController = mc;
-
-        this.model = new User();
-        model.setRole(getRoleNum(role));
+        this.model = mainController.getUser();
         this.view = new LoginView();
         this.db = db;
-        view.setVisible(true);
         addListeners();
     }
 
-    private int getRoleNum(String role) {
-        if (role.equals("Admin")) {
-            return 4;
-        } else if (role.equals("Agent")) {
-            return 3;
-        } else if (role.equals("Member")) {
-            return 2;
-        } else {
-            return 1;
-        }
+    public LoginView getView() {
+        return view;
     }
 
     private void addListeners() {
-        loginView.addLoginListener(this);
-        loginView.addRegisterListener(this);
+        view.addLoginListener(this);
+        view.addRegisterListener(this);
     }
 
     public void setUsername(String username) {
@@ -55,13 +43,14 @@ public class LoginController implements ActionListener {
     }
 
     public boolean authenticate() {
-        String query = "SELECT * FROM user WHERE username = '" + model.getUsername() + "' AND password = '"
+        String query = "SELECT * FROM users WHERE username = '" + model.getUsername() + "' AND password = '"
                 + model.getPassword() + "' AND role <= " + model.getRole();
         return db.executeQuery(query) != null;
     }
 
     public void login() {
         if (authenticate()) {
+            System.out.println("Login successful");
             updateView();
             // this.uc = new UserController(db);
             // this.uc.setUser(model);
@@ -99,15 +88,15 @@ public class LoginController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Action: " + e.getActionCommand());
-        setPassword(loginView.getPassword());
-        setUsername(loginView.getUsername());
         // setEmail(loginView.getEmail()); //might not receive email from login view,
         // will need to check
         try {
-            if (e.getActionCommand().equals("login")) {
+            if (e.getActionCommand().equals("Login")) {
+                setPassword(view.getPassword());
+                setUsername(view.getUsername());
                 login();
-            } else if (e.getActionCommand().equals("register")) { // probably will need to change this
-                register();
+            } else if (e.getActionCommand().equals("Register")) { // probably will need to change this
+                mainController.switchToView("RegisterView");
             }
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());

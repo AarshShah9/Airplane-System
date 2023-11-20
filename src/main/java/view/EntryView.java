@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class EntryView extends JFrame {
+public class EntryView extends JPanel {
     private JButton Admin = new JButton("Admin");
     private JButton Member = new JButton("Member");
     private JButton Agent = new JButton("Agent");
@@ -14,31 +14,31 @@ public class EntryView extends JFrame {
      * Default constructor for main view
      */
     public EntryView() {
-        getContentPane().setBackground(new Color(230, 230, 250));
-        setTitle("Main Menu");
-        getContentPane().setLayout(null);
+        setBackground(new Color(230, 230, 250));
+        // setTitle("Main Menu");
+        setLayout(null);
         setSize(450, 300);
 
         Admin.setBounds(66, 57, 115, 56);
-        getContentPane().add(Admin);
+        add(Admin);
         Admin.setActionCommand("Admin");
         Member.setBounds(242, 57, 115, 56);
-        getContentPane().add(Member);
+        add(Member);
         Member.setActionCommand("Member");
         Agent.setBounds(66, 141, 115, 56);
-        getContentPane().add(Agent);
+        add(Agent);
         Agent.setActionCommand("Agent");
         unReg.setBounds(242, 141, 115, 56);
-        getContentPane().add(unReg);
+        add(unReg);
         unReg.setActionCommand("Guest");
 
         JLabel optionsLbl = new JLabel("Please select one of the options");
         optionsLbl.setBounds(96, 16, 222, 20);
-        getContentPane().add(optionsLbl);
+        add(optionsLbl);
 
         JLabel exitLbl = new JLabel("Or click X to exit");
         exitLbl.setBounds(154, 213, 126, 20);
-        getContentPane().add(exitLbl);
+        add(exitLbl);
     }
 
     /**

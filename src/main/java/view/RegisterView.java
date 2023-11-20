@@ -4,17 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-// Setup Decorator Pattern
-public class LoginView extends JPanel {
-    // Text fields for username and password
-    private JTextField username;
-    private JPasswordField password;
-    private JButton loginBtn;
+public class RegisterView extends JPanel {
+    private JTextField emailField;
+    private JTextField usernameField;
+    private JPasswordField passwordField;
     private JButton registerBtn;
+    private JButton cancelBtn;
 
-    public LoginView() {
-        // setTitle("Login");
-        setSize(450, 300);
+    public RegisterView() {
+        setSize(450, 350);
         setBackground(new Color(230, 230, 250));
 
         // Using BorderLayout for overall layout
@@ -29,21 +27,29 @@ public class LoginView extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(4, 4, 4, 4); // Padding
 
-        // Username
+        // Email
         gbc.gridx = 0;
         gbc.gridy = 0;
-        formPanel.add(new JLabel("Username:"), gbc);
-        username = new JTextField(10);
+        formPanel.add(new JLabel("Email:"), gbc);
+        emailField = new JTextField(10);
         gbc.gridx = 1;
-        formPanel.add(username, gbc);
+        formPanel.add(emailField, gbc);
+
+        // Username
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        formPanel.add(new JLabel("Username:"), gbc);
+        usernameField = new JTextField(10);
+        gbc.gridx = 1;
+        formPanel.add(usernameField, gbc);
 
         // Password
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         formPanel.add(new JLabel("Password:"), gbc);
-        password = new JPasswordField(10);
+        passwordField = new JPasswordField(10);
         gbc.gridx = 1;
-        formPanel.add(password, gbc);
+        formPanel.add(passwordField, gbc);
 
         return formPanel;
     }
@@ -51,43 +57,47 @@ public class LoginView extends JPanel {
     private JPanel createButtonPanel() {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
-        // Login Button
-        loginBtn = new JButton("Login");
-        buttonPanel.add(loginBtn);
-
         // Register Button
         registerBtn = new JButton("Register");
         buttonPanel.add(registerBtn);
 
+        // Cancel Button
+        cancelBtn = new JButton("Cancel");
+        buttonPanel.add(cancelBtn);
+
         return buttonPanel;
     }
 
-    public String getUsername(){
+    public String getEmail() {
         try {
-            return username.getText();
+            return emailField.getText();
         } catch (NullPointerException e) {
             return "";
         }
     }
 
-    public String getPassword(){
+    public String getUsername() {
         try {
-            return password.getPassword().toString();
+            return usernameField.getText();
         } catch (NullPointerException e) {
             return "";
         }
     }
 
-    public void addLoginListener(ActionListener al) {
-        loginBtn.addActionListener(al);
+    public String getPassword() {
+        try {
+            return passwordField.getPassword().toString();
+        } catch (NullPointerException e) {
+            return "";
+        }
     }
 
     public void addRegisterListener(ActionListener al) {
         registerBtn.addActionListener(al);
     }
 
-    public void display() {
-        System.out.println("Login Form:");
-        // Code to display login form (username and password fields)
+    public void addCancelListener(ActionListener al) {
+        cancelBtn.addActionListener(al);
     }
+
 }
