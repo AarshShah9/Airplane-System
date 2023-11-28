@@ -1,7 +1,13 @@
-package main.java.controller;
-import main.java.model.role.User;
-import main.java.model.flight.Booking;
-import main.java.view.PaymentView;
+// package main.java.controller;
+// import main.java.model.role.User;
+// import main.java.model.flight.Booking;
+// import main.java.view.PaymentView;
+// import java.awt.event.*;
+
+package controller;
+import model.role.User;
+import model.flight.Booking;
+import view.PaymentView;
 import java.awt.event.*;
 
 import javax.swing.Action;
