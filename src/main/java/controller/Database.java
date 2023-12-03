@@ -12,37 +12,22 @@ import java.sql.ResultSet;
  */
 public class Database {
     private static Database instance;
-    private String url;
-    private String username;
-    private String password;
     private Connection connection;
 
     /**
-     * Constructs a Database instance and establishes a connection to the database.
-     *
-     * @param url      The URL of the database.
-     * @param username The username for database access.
-     * @param password The password for database access.
+     * Constructs a Database object.
      */
-    private Database(String url, String username, String password) {
-        this.url = url;
-        this.username = username;
-        this.password = password;
-        connect();
-    }
+    private Database() {}
 
     /**
      * Gets a singleton instance of the Database class.
      * If an instance does not exist, it creates one and establishes a connection to the database.
      *
-     * @param url      The URL of the database.
-     * @param username The username for database access.
-     * @param password The password for database access.
      * @return The Database instance.
      */
-    public static Database getInstance(String url, String username, String password) {
+    public static Database getInstance() {
         if (instance == null) {
-            instance = new Database(url, username, password);
+            instance = new Database();
         }
         return instance;
     }
@@ -50,7 +35,7 @@ public class Database {
     /**
      * Establishes a connection to the database.
      */
-    private void connect() {
+    public void connect(String url, String username, String password) {
         try {
             this.connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {

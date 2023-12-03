@@ -11,7 +11,5 @@ Then Run:
 
 ```
 $ mvn package
-$ java -jar target/my-app-1.0-SNAPSHOT.jar
-or
-$ java -jar target/my-app-1.0-SNAPSHOT-jar-with-dependencies.jar
+$ java -jar target/my-app-1.0-SNAPSHOT-jar-with-dependencies.jar jdbc:mysql://localhost:3306/airline root SagittariusA5290$
 ```
