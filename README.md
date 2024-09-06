@@ -1,6 +1,6 @@
 # Airplane-System
 
-The repo to store the ENSF 480 Final Project
+This is a Java GUI application that follows the MVC pattern. It implements multiple different role based functions for an airline. It used Java, Maven and MySQL database. The aim is to use software OOP patterns such as singleton, MVC, etc.
 
 # Running the application run:
 
